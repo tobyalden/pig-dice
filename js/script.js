@@ -79,117 +79,101 @@ $(document).ready(function() {
 
 // PLAYER ONE ROLL AND STOP BUTTON BELOW
 
+      $(".roll-1").click(function() {
 
-      var player1Rolls = function(){
-          $(".roll-1").click(function() {
+        var player1Dice = player1.rollDie();
 
-            var player1Dice = player1.rollDie();
+        $(".player-1-roll").text(" " + player1Dice);
+        $(".player-1-score").text(" " + player1.turnScore);
+        $(".player-1-total-score").text(" " + player1.score);
 
-            $(".player-1-roll").text(" " + player1Dice);
-            $(".player-1-score").text(" " + player1.turnScore);
-            $(".player-1-total-score").text(" " + player1.score);
+        if(player1Dice === "Hit One"){
+          $(".buttons-1").fadeOut("slow");
+          $(".buttons-2").fadeIn("slow");
+        };
 
-            if(player1Dice === "Hit One"){
-              $(".buttons-1").fadeOut("slow");
-              $(".buttons-2").fadeIn("slow");
-            };
+        var winner = player1.scoreCheck();
 
-            var winner = player1.scoreCheck();
+      });
 
-          });
-      };
+    $(".stop-1").click(function(){
 
-
-      var player1Stops = function(){
-        $(".stop-1").click(function(){
-
-          player1.stop();
-          $(".player-1-total-score").text(" " + player1.score);
-          $(".player-1-score").text(" " + player1.turnScore);
+      player1.stop();
+      $(".player-1-total-score").text(" " + player1.score);
+      $(".player-1-score").text(" " + player1.turnScore);
 
 
-          var winner = player1.scoreCheck();
+      var winner = player1.scoreCheck();
 
-          if(winner === "Win"){
-            alert("Congratulations " + player1.playerName +" you win! GAME OVER!")
-            player1.newGame();
-            player2.newGame();
-            $(".player-1-total-score").text(" " + player1.score);
-            $(".player-1-score").text(" " + player1.turnScore);
-            $(".player-2-total-score").text(" " + player2.score);
-            $(".player-2-score").text(" " + player2.turnScore);
-            $(".player-1-roll").text(" ");
-            $(".player-2-roll").text(" ");
+      if(winner === "Win"){
+        alert("Congratulations " + player1.playerName +" you win! GAME OVER!")
+        player1.newGame();
+        player2.newGame();
+        $(".player-1-total-score").text(" " + player1.score);
+        $(".player-1-score").text(" " + player1.turnScore);
+        $(".player-2-total-score").text(" " + player2.score);
+        $(".player-2-score").text(" " + player2.turnScore);
+        $(".player-1-roll").text(" ");
+        $(".player-2-roll").text(" ");
 
-          }else{
-            $(".buttons-1").fadeOut("slow");
-            $(".buttons-2").fadeIn("slow");
-          }
+      }else{
+        $(".buttons-1").fadeOut("slow");
+        $(".buttons-2").fadeIn("slow");
+      }
 
-        });
-      };
+    });
 
 
 
 
 // PLAYER TWO ROLL AND STOP BUTTON BELOW
 
-      var player2Rolls = function(){
-          $(".roll-2").click(function() {
+      $(".roll-2").click(function() {
 
-            var player2Dice = player2.rollDie();
+        var player2Dice = player2.rollDie();
 
-            $(".player-2-roll").text(" " + player2Dice);
-            $(".player-2-score").text(" " + player2.turnScore);
-            $(".player-2-total-score").text(" " + player2.score);
+        $(".player-2-roll").text(" " + player2Dice);
+        $(".player-2-score").text(" " + player2.turnScore);
+        $(".player-2-total-score").text(" " + player2.score);
 
-            if(player2Dice === "Hit One"){
-              $(".buttons-2").fadeOut("slow");
-              $(".buttons-1").fadeIn("slow");
-            };
+        if(player2Dice === "Hit One"){
+          $(".buttons-2").fadeOut("slow");
+          $(".buttons-1").fadeIn("slow");
+        };
 
-            var winner = player2.scoreCheck();
+        var winner = player2.scoreCheck();
 
-          });
-      };
+      });
 
 
+    $(".stop-2").click(function(){
 
-      var player2Stops = function(){
-        $(".stop-2").click(function(){
-
-          player2.stop();
-          $(".player-2-total-score").text(" " + player2.score);
-          $(".player-2-score").text(" " + player2.turnScore);
+      player2.stop();
+      $(".player-2-total-score").text(" " + player2.score);
+      $(".player-2-score").text(" " + player2.turnScore);
 
 
-          var winner = player2.scoreCheck();
+      var winner = player2.scoreCheck();
 
-          if(winner === "Win"){
-            alert("Congratulations " + player2.playerName +" you win! GAME OVER!")
-            player1.newGame();
-            player2.newGame();
-            $(".player-1-total-score").text(" " + player1.score);
-            $(".player-1-score").text(" " + player1.turnScore);
-            $(".player-2-total-score").text(" " + player2.score);
-            $(".player-2-score").text(" " + player2.turnScore);
-            $(".player-1-roll").text(" ");
-            $(".player-2-roll").text(" ");
-            $(".buttons-2").fadeOut("slow");
-            $(".buttons-1").fadeIn("slow");
-          }else{
-            $(".buttons-2").fadeOut("slow");
-            $(".buttons-1").fadeIn("slow");
-          }
+      if(winner === "Win"){
+        alert("Congratulations " + player2.playerName +" you win! GAME OVER!")
+        player1.newGame();
+        player2.newGame();
+        $(".player-1-total-score").text(" " + player1.score);
+        $(".player-1-score").text(" " + player1.turnScore);
+        $(".player-2-total-score").text(" " + player2.score);
+        $(".player-2-score").text(" " + player2.turnScore);
+        $(".player-1-roll").text(" ");
+        $(".player-2-roll").text(" ");
+        $(".buttons-2").fadeOut("slow");
+        $(".buttons-1").fadeIn("slow");
+      }else{
+        $(".buttons-2").fadeOut("slow");
+        $(".buttons-1").fadeIn("slow");
+      }
 
-        });
-      };
+    });
 
-      player1Rolls();
-      player1Stops();
-      player2Rolls();
-      player2Stops();
 
   });
-
 });
