@@ -70,11 +70,14 @@ $(document).ready(function() {
       $(".player-1-total-score").text(" " + player1.score);
       if (player1Dice === "Hit One") {
           $(".buttons-1").fadeOut("slow");
+          $("button.roll-1").prop('disabled', true);
+          $("button.stop-1").prop('disabled', true);
           $(".buttons-2").fadeIn("slow");
+          $("button.roll-2").prop('disabled', false);
+          $("button.stop-2").prop('disabled', false);
         };
         var winner = player1.scoreCheck();
       });
-
 
     $(".stop-1").click(function() {
       player1.stop();
@@ -93,7 +96,11 @@ $(document).ready(function() {
         $(".player-2-roll").text(" ");
       } else {
         $(".buttons-1").fadeOut("slow");
+        $("button.roll-1").prop('disabled', true);
+        $("button.stop-1").prop('disabled', true);
         $(".buttons-2").fadeIn("slow");
+        $("button.roll-2").prop('disabled', false);
+        $("button.stop-2").prop('disabled', false);
       }
     });
 
@@ -105,7 +112,11 @@ $(document).ready(function() {
       $(".player-2-total-score").text(" " + player2.score);
       if (player2Dice === "Hit One") {
         $(".buttons-2").fadeOut("slow");
+        $("button.roll-2").prop('disabled', true);
+        $("button.stop-2").prop('disabled', true);
         $(".buttons-1").fadeIn("slow");
+        $("button.roll-1").prop('disabled', false);
+        $("button.stop-1").prop('disabled', false);
       }
       var winner = player2.scoreCheck();
     });
@@ -126,11 +137,13 @@ $(document).ready(function() {
         $(".player-2-score").text(" " + player2.turnScore);
         $(".player-1-roll").text(" ");
         $(".player-2-roll").text(" ");
-        $(".buttons-2").fadeOut("slow");
-        $(".buttons-1").fadeIn("slow");
       } else {
         $(".buttons-2").fadeOut("slow");
+        $("button.roll-2").prop('disabled', true);
+        $("button.stop-2").prop('disabled', true);
         $(".buttons-1").fadeIn("slow");
+        $("button.roll-1").prop('disabled', false);
+        $("button.stop-1").prop('disabled', false);
       }
     });
 
