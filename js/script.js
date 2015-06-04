@@ -7,6 +7,7 @@ function Player(playerName, score, turnScore) {
 Player.prototype.rollDie = function() {
   var rollScore = 0;
   var diceArray = [];
+  var isP2AI;
 
   var dice1 = Math.floor(Math.random() * 6) + 1;
   var dice2 = Math.floor(Math.random() * 6) + 1;
@@ -52,6 +53,7 @@ $(document).ready(function() {
 
     var player1input = $("#player-1").val();
     var player2input = $("#player-2").val();
+    isP2AI = $("input#ai").prop('checked');
 
     $(".player-1-name").text(player1input);
     $(".player-2-name").text(player2input);
@@ -70,9 +72,12 @@ $(document).ready(function() {
       $(".player-1-total-score").text(" " + player1.score);
       if (player1Dice === "Hit One") {
         toggleButtons(true);
-        };
+        if(isP2AI) {
+          takeTurnAI();
+        }
+      };
         var winner = player1.scoreCheck();
-      });
+    });
 
     $(".stop-1").click(function() {
       player1.stop();
@@ -91,9 +96,11 @@ $(document).ready(function() {
         $(".player-2-roll").text(" ");
       } else {
         toggleButtons(true);
+        if(isP2AI) {
+          takeTurnAI();
+        }
       }
     });
-
 
     $(".roll-2").click(function() {
       var player2Dice = player2.rollDie();
@@ -126,9 +133,15 @@ $(document).ready(function() {
         toggleButtons(false);
       }
     });
+    function takeTurnAI() {
+      $('button.roll-2').trigger('click');
+      if($(".player-1-roll").text() != "Hit One") {
+        $('button.stop-2').trigger('click');
+      }
+    }
 
     function toggleButtons(toggleP1Off) {
-      if(toggleP1Off) {
+      if (toggleP1Off) {
         $(".buttons-1").fadeOut("slow");
         $("button.roll-1").prop('disabled', true);
         $("button.stop-1").prop('disabled', true);

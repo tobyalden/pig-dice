@@ -141,3 +141,8 @@ body {
     -moz-border-radius: 3px;
     font-weight: bold;
 }
+
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
