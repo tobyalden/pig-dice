@@ -133,12 +133,34 @@ $(document).ready(function() {
         toggleButtons(false);
       }
     });
+
     function takeTurnAI() {
+
+      var startTime = Date.now();
+
       $('button.roll-2').trigger('click');
+      while(player2.turnScore < 10 && $(".player-1-roll").text() != "Hit One") {
+        $('button.roll-2').trigger('click');
+      }
+
       if($(".player-1-roll").text() != "Hit One") {
         $('button.stop-2').trigger('click');
       }
+
+// debugger;
+
+//       while(player2.turnScore < 10 && $(".player-1-roll").text() != "Hit One") {
+//         var nowTime = Date.now();
+//         if(startTime + 2000 < nowTime) {
+// // debugger;
+//           $('button.roll-2').trigger('click');
+//           startTime = Date.now();
+//         }
+//       }
+
+
     }
+
 
     function toggleButtons(toggleP1Off) {
       if (toggleP1Off) {
@@ -146,8 +168,10 @@ $(document).ready(function() {
         $("button.roll-1").prop('disabled', true);
         $("button.stop-1").prop('disabled', true);
         $(".buttons-2").fadeIn("slow");
-        $("button.roll-2").prop('disabled', false);
-        $("button.stop-2").prop('disabled', false);
+        if(!isP2AI) {
+          $("button.roll-2").prop('disabled', false);
+          $("button.stop-2").prop('disabled', false);
+        }
       } else {
         $(".buttons-2").fadeOut("slow");
         $("button.roll-2").prop('disabled', true);
