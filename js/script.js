@@ -69,12 +69,7 @@ $(document).ready(function() {
       $(".player-1-score").text(" " + player1.turnScore);
       $(".player-1-total-score").text(" " + player1.score);
       if (player1Dice === "Hit One") {
-          $(".buttons-1").fadeOut("slow");
-          $("button.roll-1").prop('disabled', true);
-          $("button.stop-1").prop('disabled', true);
-          $(".buttons-2").fadeIn("slow");
-          $("button.roll-2").prop('disabled', false);
-          $("button.stop-2").prop('disabled', false);
+        toggleButtons(true);
         };
         var winner = player1.scoreCheck();
       });
@@ -95,12 +90,7 @@ $(document).ready(function() {
         $(".player-1-roll").text(" ");
         $(".player-2-roll").text(" ");
       } else {
-        $(".buttons-1").fadeOut("slow");
-        $("button.roll-1").prop('disabled', true);
-        $("button.stop-1").prop('disabled', true);
-        $(".buttons-2").fadeIn("slow");
-        $("button.roll-2").prop('disabled', false);
-        $("button.stop-2").prop('disabled', false);
+        toggleButtons(true);
       }
     });
 
@@ -111,12 +101,7 @@ $(document).ready(function() {
       $(".player-2-score").text(" " + player2.turnScore);
       $(".player-2-total-score").text(" " + player2.score);
       if (player2Dice === "Hit One") {
-        $(".buttons-2").fadeOut("slow");
-        $("button.roll-2").prop('disabled', true);
-        $("button.stop-2").prop('disabled', true);
-        $(".buttons-1").fadeIn("slow");
-        $("button.roll-1").prop('disabled', false);
-        $("button.stop-1").prop('disabled', false);
+        toggleButtons(false);
       }
       var winner = player2.scoreCheck();
     });
@@ -138,6 +123,19 @@ $(document).ready(function() {
         $(".player-1-roll").text(" ");
         $(".player-2-roll").text(" ");
       } else {
+        toggleButtons(false);
+      }
+    });
+
+    function toggleButtons(toggleP1Off) {
+      if(toggleP1Off) {
+        $(".buttons-1").fadeOut("slow");
+        $("button.roll-1").prop('disabled', true);
+        $("button.stop-1").prop('disabled', true);
+        $(".buttons-2").fadeIn("slow");
+        $("button.roll-2").prop('disabled', false);
+        $("button.stop-2").prop('disabled', false);
+      } else {
         $(".buttons-2").fadeOut("slow");
         $("button.roll-2").prop('disabled', true);
         $("button.stop-2").prop('disabled', true);
@@ -145,8 +143,7 @@ $(document).ready(function() {
         $("button.roll-1").prop('disabled', false);
         $("button.stop-1").prop('disabled', false);
       }
-    });
-
+    }
 
   });
 });
